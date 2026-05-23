@@ -1,0 +1,11 @@
+stages:
+  - draft
+  - review
+  - staging
+  - production
+approvals:
+  production:
+    - editorial
+    - seo
+    - platform
+rollback_note_required: true

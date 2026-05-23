@@ -1,0 +1,9 @@
+required_fields:
+  - title
+  - description
+  - canonical
+  - og_image
+content_types:
+  landing_page:
+    require_schema: true
+    min_description_length: 120

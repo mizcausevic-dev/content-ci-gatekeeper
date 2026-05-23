@@ -1,0 +1,7 @@
+internal_links:
+  max_broken: 0
+external_links:
+  max_broken: 2
+redirect_policy:
+  require_for_slug_change: true
+  require_for_retired_campaign: true
