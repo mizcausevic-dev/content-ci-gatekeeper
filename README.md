@@ -1,6 +1,9 @@
-# content-ci-gatekeeper
+# Content CI Gatekeeper
 
-Content validation control plane for CMS and markdown release safety: metadata policy, broken-link pressure, publish approvals, and SEO-conscious content delivery.
+Board-ready Kinetic Gain surface for release-gating CMS and markdown content before broken links, metadata drift, or redirect gaps hit production.
+
+- Live: [http://content.kineticgain.com/](http://content.kineticgain.com/)
+- Repo: [https://github.com/mizcausevic-dev/content-ci-gatekeeper](https://github.com/mizcausevic-dev/content-ci-gatekeeper)
 
 ## What it shows
 
@@ -46,6 +49,7 @@ Then open:
 
 ```powershell
 npm run verify
+npm run prerender
 npm run render:assets
 ```
 
