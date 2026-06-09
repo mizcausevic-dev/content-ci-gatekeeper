@@ -186,10 +186,31 @@ function pageShell(title: string, activeRoute: string, body: string) {
       background: rgba(18, 29, 51, 0.6);
     }
     .spec-box strong { display: block; margin-bottom: 12px; font-size: 16px; }
+    .depth-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+    .depth-card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(18, 29, 51, 0.74), rgba(9, 16, 29, 0.7));
+    }
+    .depth-card h3 { margin: 10px 0; font-size: 23px; line-height: 1.14; }
+    .depth-card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.58; }
+    .site-footer {
+      margin-top: 32px;
+      padding: 20px 4px 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .site-footer a { color: #dce8ff; text-decoration: none; }
     @media (max-width: 1100px) {
       .hero, .docs-note { grid-template-columns: 1fr; }
       .metric { grid-column: span 6; }
       .split-left, .split-right { grid-column: 1 / -1; }
+      .depth-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 720px) {
       .wrap { width: min(100% - 24px, 100%); }
@@ -197,6 +218,7 @@ function pageShell(title: string, activeRoute: string, body: string) {
       .metric { grid-column: 1 / -1; }
       .tabs { gap: 12px; }
       .tab { width: 100%; justify-content: center; }
+      .depth-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -221,6 +243,13 @@ function pageShell(title: string, activeRoute: string, body: string) {
     </nav>
 
     ${body}
+    <footer class="site-footer">
+      <a href="http://content.kineticgain.com/">content.kineticgain.com</a>
+      <a href="https://kineticgain.com/">Kinetic Gain</a>
+      <a href="https://portfolio.kineticgain.com/">Portfolio</a>
+      <a href="https://github.com/mizcausevic-dev/content-ci-gatekeeper">GitHub</a>
+      <a href="/docs">Docs</a>
+    </footer>
   </div>
 </body>
 </html>`;
@@ -230,6 +259,36 @@ function statusClass(status: string) {
   if (status === "healthy") return "healthy";
   if (status === "watch") return "watch";
   return "critical";
+}
+
+function productDepthSection() {
+  return `<article class="card highlight">
+    <div class="kicker">Product depth</div>
+    <h2>Content CI Gatekeeper turns publishing quality into a measurable release-control system.</h2>
+    <p>It connects content strategy, SEO, RevOps, and platform engineering so public pages are not shipped with broken internal links, missing metadata, stale redirects, weak schema, or unclear approval ownership.</p>
+    <div class="depth-grid">
+      <div class="depth-card">
+        <div class="mini">GTM analyst lens</div>
+        <h3>Protect demand capture before publish.</h3>
+        <p>Marketing can see whether a release preserves search intent, paid-campaign routes, social previews, and conversion paths before public traffic hits the page.</p>
+      </div>
+      <div class="depth-card">
+        <div class="mini">Value architect lens</div>
+        <h3>Reduce cleanup cost and lost confidence.</h3>
+        <p>The page translates content defects into operating impact: lower SEO quality, broken buyer journeys, manual QA burden, and weaker reporting trust.</p>
+      </div>
+      <div class="depth-card">
+        <div class="mini">Technical reviewer lens</div>
+        <h3>Make release gates inspectable.</h3>
+        <p>Policy files, JSON endpoints, screenshots, smoke checks, and prerendered routes give engineers concrete proof instead of vague content-governance claims.</p>
+      </div>
+      <div class="depth-card">
+        <div class="mini">What these repos share</div>
+        <h3>They turn invisible operating risk into decision evidence.</h3>
+        <p>Each Kinetic Gain surface names the risk, maps the owner, exposes the control plane, and gives leaders and builders the same artifact to inspect.</p>
+      </div>
+    </div>
+  </article>`;
 }
 
 export function renderOverview() {
@@ -251,6 +310,8 @@ export function renderOverview() {
           <h2>"${dashboard.recommendation}"</h2>
           <p>Best use case: marketing or documentation systems where content changes can quietly degrade SEO, trust, and campaign performance without breaking infrastructure health checks.</p>
         </article>
+
+        ${productDepthSection()}
 
         <article class="card split-left">
           <div class="panel-label">Policy Surface</div>
@@ -325,6 +386,7 @@ export function renderContentPolicy() {
               .join("")}
           </div>
         </article>
+        ${productDepthSection()}
         <article class="card split-right">
           <div class="panel-label">Reading Guide</div>
           <h2 class="section-title">What operators should watch.</h2>
@@ -368,6 +430,7 @@ export function renderReleaseLane() {
               .join("")}
           </div>
         </article>
+        ${productDepthSection()}
         <article class="card split-right">
           <div class="panel-label">Policy Artifacts</div>
           <h2 class="section-title">Release-aware policy files.</h2>
@@ -403,6 +466,7 @@ export function renderVerification() {
             ${verification().map((item) => `<li>${item}</li>`).join("")}
           </ul>
         </article>
+        ${productDepthSection()}
         <article class="card split-right">
           <div class="panel-label">Readiness Snapshot</div>
           <h2 class="section-title">Release gate summary.</h2>
@@ -439,6 +503,7 @@ export function renderDocs() {
               )
               .join("")}
           </div>
+          ${productDepthSection()}
         </article>
         <aside class="card">
           <div class="panel-label">Spec Classification</div>
